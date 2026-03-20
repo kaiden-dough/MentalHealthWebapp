@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HokieHealth — Check-in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/hokiehealth.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="app-shell">
+      <header class="brand">
+        <div class="brand-mark" aria-hidden="true">❤</div>
+        <h1>HokieHealth</h1>
+        <p class="brand-tagline">
+          Log how you’re doing—mood, stress, and optional context. No essay required.
+        </p>
+      </header>
+
+      <nav class="nav-tabs" aria-label="Main">
+        <a href="dashboard.html"><span class="icon" aria-hidden="true">🏠</span>Home</a>
+        <a href="check-in.html" aria-current="page"><span class="icon" aria-hidden="true">📝</span>Check-In</a>
+        <a href="feedback-positive.html"><span class="icon" aria-hidden="true">💡</span>Tips</a>
+        <a href="#"><span class="icon" aria-hidden="true">📈</span>Trends</a>
+        <a href="#"><span class="icon" aria-hidden="true">📖</span>Resources</a>
+      </nav>
+
+      <main id="main" class="card">
+        <h2>How are you feeling?</h2>
+        <p class="lede">Tap the option that fits best right now.</p>
+
+        <!-- Mood scale: visual mock uses buttons (no form submit in static mockup) -->
+        <div class="mood-grid" role="group" aria-label="Mood">
+          <button type="button" class="mood-option selected"><span class="emoji">😄</span>Great</button>
+          <button type="button" class="mood-option"><span class="emoji">🙂</span>Good</button>
+          <button type="button" class="mood-option"><span class="emoji">😐</span>Okay</button>
+          <button type="button" class="mood-option"><span class="emoji">😟</span>Low</button>
+          <button type="button" class="mood-option"><span class="emoji">😣</span>Rough</button>
+        </div>
+
+        <div class="slider-block">
+          <label for="stress">
+            Stress level <span class="muted" id="stress-out">5 / 10</span>
+          </label>
+          <input
+            type="range"
+            id="stress"
+            min="1"
+            max="10"
+            value="5"
+            aria-valuemin="1"
+            aria-valuemax="10"
+            aria-valuenow="5"
+            aria-describedby="stress-hint"
+          />
+          <p id="stress-hint" class="visually-hidden">
+            Drag to set stress from low to high.
+          </p>
+          <div class="slider-labels">
+            <span>Calmer</span>
+            <span>Overwhelmed</span>
+          </div>
+        </div>
+
+        <p class="chips-title">What’s on your mind? <span class="muted">(optional)</span></p>
+        <div class="chips" role="group" aria-label="Stressors">
+          <button type="button" class="chip" aria-pressed="false">📚 Exams</button>
+          <button type="button" class="chip" aria-pressed="true">💼 Workload</button>
+          <button type="button" class="chip" aria-pressed="false">💬 Social</button>
+          <button type="button" class="chip" aria-pressed="false">😴 Sleep</button>
+          <button type="button" class="chip" aria-pressed="false">❤️ Relationships</button>
+        </div>
+
+        <a class="btn btn-primary" href="feedback-coping.html">Save &amp; get support</a>
+        <a class="btn btn-ghost" href="feedback-positive.html">Preview positive path (mock)</a>
+      </main>
+
+      <footer class="site-foot">
+        Mockup: links demo both feedback screens. Final app will route by mood after save.
+      </footer>
+    </div>
+
+    <style>
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+
+    <script>
+      // Updates stress readout and aria-valuenow for the slider mockup
+      const stress = document.getElementById("stress");
+      const out = document.getElementById("stress-out");
+      stress.addEventListener("input", () => {
+        out.textContent = stress.value + " / 10";
+        stress.setAttribute("aria-valuenow", stress.value);
+      });
+
+      document.querySelectorAll(".mood-option").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".mood-option").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+        });
+      });
+
+      document.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const on = chip.getAttribute("aria-pressed") === "true";
+          chip.setAttribute("aria-pressed", String(!on));
+        });
+      });
+    </script>
+  </body>
+</html>

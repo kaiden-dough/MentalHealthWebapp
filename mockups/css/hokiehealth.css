@@ -1,0 +1,545 @@
+/* HokieHealth mockup — shared layout, tokens, and components */
+
+:root {
+  /* Calm base + VT-inspired accents (used sparingly) */
+  --bg: #f4f2f8;
+  --bg-deep: #e8e4f0;
+  --surface: #ffffff;
+  --text: #1c1b1f;
+  --text-muted: #5c5863;
+  --border: rgba(28, 27, 31, 0.08);
+  --maroon: #861f41;
+  --maroon-hover: #6b1934;
+  --accent: #c45c26;
+  --accent-soft: rgba(196, 92, 38, 0.12);
+  --success: #2d6a4f;
+  --warn: #e9c46a;
+  --danger: #c1121f;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(28, 27, 31, 0.06);
+  --shadow-hover: 0 8px 32px rgba(28, 27, 31, 0.1);
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --max: 480px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(134, 31, 65, 0.07), transparent),
+    radial-gradient(ellipse 80% 50% at 100% 100%, rgba(196, 92, 38, 0.06), transparent);
+}
+
+/* Skip link for keyboard users */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--maroon);
+  color: #fff;
+  z-index: 100;
+}
+.skip:focus {
+  left: 0;
+}
+
+.app-shell {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 2rem;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Brand header */
+.brand {
+  text-align: center;
+  padding: 0.5rem 0 1rem;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, var(--maroon), #a8325a);
+  color: #fff;
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.brand h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.65rem;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text);
+}
+
+.brand-tagline {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.45;
+}
+
+/* Tab navigation */
+.nav-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.3rem;
+  padding: 0.35rem;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+}
+
+.nav-tabs a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.5rem 0.15rem;
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-tabs a:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.nav-tabs a[aria-current="page"] {
+  background: var(--bg-deep);
+  color: var(--maroon);
+}
+
+/* Emoji nav icons — single size so they read evenly across OS fonts */
+.nav-tabs .icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 1.35rem 1.25rem;
+  flex: 1;
+}
+
+.card h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.card .lede {
+  margin: 0 0 1.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* De-emphasized inline text */
+.muted {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--maroon);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(134, 31, 65, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--maroon-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--maroon);
+  border: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.btn-ghost:hover {
+  background: var(--accent-soft);
+  border-color: transparent;
+}
+
+/* Footer note */
+.site-foot {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Dashboard-specific */
+.greeting {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.greeting .hi {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.greeting .sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.streak-pill {
+  flex-shrink: 0;
+  padding: 0.4rem 0.65rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.stat {
+  padding: 0.85rem;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.stat .label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 0.2rem;
+}
+
+.stat .value {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.link-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+}
+
+.link-row a {
+  color: var(--maroon);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-row a:hover {
+  text-decoration: underline;
+}
+
+/* Check-in: mood grid */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.mood-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.55rem 0.2rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: border-color 0.15s, background 0.15s, transform 0.12s;
+}
+
+.mood-option:hover {
+  border-color: rgba(134, 31, 65, 0.35);
+  transform: translateY(-2px);
+}
+
+.mood-option.selected {
+  border-color: var(--maroon);
+  background: rgba(134, 31, 65, 0.06);
+  color: var(--maroon);
+}
+
+.mood-option .emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Stress slider */
+.slider-block {
+  margin-bottom: 1.25rem;
+}
+
+.slider-block label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.slider-block label span.muted {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--bg-deep);
+  border-radius: 999px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--maroon);
+  border: 3px solid #fff;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--maroon);
+  border: 3px solid #fff;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* Chips */
+.chips-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.65rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--maroon);
+}
+
+.chip[aria-pressed="true"] {
+  background: rgba(134, 31, 65, 0.1);
+  border-color: var(--maroon);
+  color: var(--maroon);
+}
+
+/* Feedback pages */
+.feedback-hero {
+  text-align: center;
+  padding: 0.5rem 0 1rem;
+}
+
+.feedback-hero .badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.feedback-hero .badge.affirm {
+  background: rgba(45, 106, 79, 0.15);
+  color: var(--success);
+}
+
+.feedback-hero .badge.cope {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.feedback-hero .big-emoji {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-hero h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+}
+
+.feedback-body {
+  font-size: 0.9375rem;
+  color: var(--text);
+  margin: 0 0 1.25rem;
+}
+
+.tip-box {
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--maroon);
+  background: var(--bg);
+  margin-bottom: 1.25rem;
+}
+
+.tip-box h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.tip-box p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.steps li {
+  margin-bottom: 0.35rem;
+}
