@@ -499,6 +499,51 @@ input[type="range"]::-moz-range-thumb {
   margin-bottom: 0.5rem;
 }
 
+/* Resources page styles */
+details {
+  border: 2px solid var(--maroon);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+summary {
+  background: var(--maroon);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.15s;
+}
+
+summary:hover {
+  background: var(--maroon-hover);
+}
+
+details[open] summary {
+  border-bottom: 2px solid var(--maroon);
+}
+
+details ul {
+  margin: 1rem;
+  padding: 0 0 0 1rem;
+}
+
+details li {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: var(--maroon);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--maroon-hover);
+}
+
 .feedback-hero h2 {
   font-family: var(--font-display);
   font-size: 1.4rem;
