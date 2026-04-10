@@ -43,7 +43,19 @@ A **mental health micro check-in** web app for Virginia Tech students: quick moo
 
 ## Deploy (e.g. Vercel)
 
-Set the same environment variables in the Vercel project. Set `NEXT_PUBLIC_SITE_URL` to your production URL for auth email redirects.
+1. **Vercel → Project → Settings → Environment Variables** (Production at minimum):
+   - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` (same as local).
+   - `NEXT_PUBLIC_SITE_URL` = your live origin, e.g. `https://mental-health-webapp-sigma.vercel.app` (no trailing slash).  
+     If you omit this, the app falls back to Vercel’s `VERCEL_URL` on the server so email links can still work, but setting the variable explicitly is recommended.
+
+2. **Supabase → Authentication → URL configuration**
+   - **Site URL**: your production URL (same as above), not `http://localhost:3000`.
+   - **Redirect URLs**: include  
+     `https://mental-health-webapp-sigma.vercel.app/auth/callback`  
+     (and `http://localhost:3000/auth/callback` for local dev).  
+     Add preview URLs too if you test PR deployments, e.g. `https://*.vercel.app/**` or each preview URL.
+
+Confirmation and magic-link emails use `emailRedirectTo` built from `NEXT_PUBLIC_SITE_URL` (or `VERCEL_URL` on Vercel). If links still open localhost, the Supabase allow list or Vercel env is usually missing the production URL—update both, redeploy, then sign up again (or resend confirmation).
 
 ## Disclaimer
 

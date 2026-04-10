@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
+import { getSiteUrl } from "@/lib/env";
 import { createClient } from "@/lib/supabase/server";
 
 const loginSchema = z.object({
@@ -68,7 +69,8 @@ export async function signUpWithPassword(_prev: AuthFormState, formData: FormDat
       data: {
         display_name: parsed.data.displayName,
       },
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/auth/callback`,
+      // Must match Supabase Auth → Redirect URLs and your Vercel NEXT_PUBLIC_SITE_URL (or VERCEL_URL fallback)
+      emailRedirectTo: `${getSiteUrl()}/auth/callback`,
     },
   });
 
