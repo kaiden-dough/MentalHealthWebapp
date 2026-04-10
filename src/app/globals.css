@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Calming mental-health palette: soft neutrals + VT maroon as primary */
+    --background: 270 20% 98%;
+    --foreground: 260 15% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 260 15% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 15% 12%;
+    --primary: 343 47% 32%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 270 15% 94%;
+    --secondary-foreground: 260 15% 18%;
+    --muted: 270 12% 94%;
+    --muted-foreground: 260 8% 42%;
+    --accent: 24 75% 92%;
+    --accent-foreground: 24 60% 28%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 270 12% 90%;
+    --input: 270 12% 90%;
+    --ring: 343 47% 32%;
+    --radius: 0.875rem;
+    --calm-lavender: 270 25% 96%;
+    --calm-sage: 145 20% 94%;
+  }
+
+  .dark {
+    --background: 260 18% 9%;
+    --foreground: 270 15% 96%;
+    --card: 260 16% 12%;
+    --card-foreground: 270 15% 96%;
+    --popover: 260 16% 12%;
+    --popover-foreground: 270 15% 96%;
+    --primary: 343 42% 48%;
+    --primary-foreground: 260 18% 9%;
+    --secondary: 260 12% 18%;
+    --secondary-foreground: 270 15% 92%;
+    --muted: 260 12% 18%;
+    --muted-foreground: 270 8% 65%;
+    --accent: 24 40% 22%;
+    --accent-foreground: 24 60% 88%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 260 12% 20%;
+    --input: 260 12% 20%;
+    --ring: 343 42% 48%;
+    --calm-lavender: 260 16% 14%;
+    --calm-sage: 145 12% 16%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
