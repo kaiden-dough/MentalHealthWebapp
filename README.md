@@ -10,14 +10,8 @@ A **mental health micro check-in** web app for Virginia Tech students: quick moo
    npm install
    ```
 
-2. **Configure Supabase**
 
-   - Copy `.env.example` to **`.env.local`** and set **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** (Dashboard → **Project Settings → API** — use the **anon** “legacy” JWT or the **publishable** key; either works with `@supabase/ssr`).
-   - **`NEXT_PUBLIC_SUPABASE_URL`** is prefilled in `.env.example` for the shared project; change it if you use a different project.
-   - **Authentication → URL configuration**: set **Site URL** to `http://localhost:3000` (and your production URL later). Under **Redirect URLs**, add `http://localhost:3000/auth/callback` (and the production callback when you deploy).
-   - Database tables (`profiles`, `mood_entries` + RLS) are created by migration `hokiehealth_initial_schema` on the linked project. For a fresh project, run `supabase/migrations/001_initial.sql` in the SQL Editor.
-
-3. **Run the dev server**
+2. **Run the dev server**
 
    ```bash
    npm run dev
@@ -50,16 +44,6 @@ A **mental health micro check-in** web app for Virginia Tech students: quick moo
 ## Deploy (e.g. Vercel)
 
 Set the same environment variables in the Vercel project. Set `NEXT_PUBLIC_SITE_URL` to your production URL for auth email redirects.
-
-## Troubleshooting dev server (`localStorage.getItem is not a function`)
-
-If Node was started with **`--localstorage-file`** without a valid path, **`localStorage.getItem` may not be a function**. That can come from **Cursor/IDE** injecting `NODE_OPTIONS` even when your PowerShell session shows **`$env:NODE_OPTIONS` empty**.
-
-1. **`next.config.ts`** imports **`src/lib/patch-node-localstorage.ts`** first so a safe in-memory `localStorage` is installed before SSR.
-2. **`src/instrumentation.ts`** applies the same fix when the instrumentation hook runs (no longer requires `NEXT_RUNTIME === "nodejs"`).
-3. **Toasts** use `next/dynamic` with `ssr: false` so Sonner does not render on the server.
-4. Fallback: run **`npm run dev:webpack`** (no Turbopack) if anything still misbehaves.
-5. Optional: remove bad flags from **Windows Environment Variables** or Cursor’s terminal profile so Node stops printing the `--localstorage-file` warning.
 
 ## Disclaimer
 
