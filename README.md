@@ -19,10 +19,16 @@ A **mental health micro check-in** web app for Virginia Tech students: quick moo
 
    Open [http://localhost:3000](http://localhost:3000).
 
-4. **Auth**
+3. **Auth**
 
    - Sign up on `/signup`. If email confirmation is enabled in Supabase, confirm via email before signing in.
    - The `profiles` row is upserted when you use the app (`ensureUserProfile`).
+
+## Testing
+
+The suite uses **[Vitest](https://vitest.dev/)** in a Node environment. Tests live under `tests/` (`tests/lib`, `tests/app`, `tests/integration`, etc.), with `vitest.config.ts` at the repo root. Server actions, library helpers, the auth callback route, Supabase middleware helpers, and instrumentation are exercised with **mocked** Supabase and Next.js APIs, so you do not need a running database to execute the suite.
+
+`npm run test:coverage` enables **v8** coverage, prints a summary table in the terminal, and writes an HTML report to `coverage/` (gitignored). Coverage targets `src/**/*.{ts,tsx}` with noisy paths trimmed (for example `src/components/ui`).
 
 ## Scripts
 
@@ -32,12 +38,16 @@ A **mental health micro check-in** web app for Virginia Tech students: quick moo
 | `npm run build`| Production build   |
 | `npm run start`| Production server |
 | `npm run lint` | ESLint             |
+| `npm test` | Vitest (watch) |
+| `npm run test:run` | Vitest (single run) |
+| `npm run test:coverage` | Vitest + coverage report |
 
 ## Project layout
 
 - `src/app` — App Router routes (marketing `/`, auth `/login` `/signup`, protected app under `(protected)/…`).
 - `src/components` — UI primitives (`components/ui`) and feature components.
 - `src/lib` — Supabase clients, feedback pools, campus resources, stats helpers.
+- `tests/` — Vitest specs and shared test helpers (see **Testing** above).
 - `mockups/` — Original static HTML mockups (reference only).
 - `supabase/migrations` — SQL for manual application in Supabase.
 
