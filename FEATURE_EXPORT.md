@@ -1,7 +1,9 @@
 # Mood History Export Feature
 
 ## Overview
-
+AI Generated Features
+Prompt: 
+"Generate a local data storing feature that allows user to download their logging data without server logging."
 The Mood History Export feature allows users to download their mood and stress logging data in multiple formats (CSV and JSON) for personal analysis, professional sharing, and data backup. This implementation prioritizes privacy by processing all data client-side with no server logging.
 
 ## Features
