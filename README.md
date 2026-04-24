@@ -30,6 +30,8 @@ The suite uses **[Vitest](https://vitest.dev/)** in a Node environment. Tests li
 
 `npm run test:coverage` enables **v8** coverage, prints a summary table in the terminal, and writes an HTML report to `coverage/` (gitignored). Coverage targets `src/**/*.{ts,tsx}` with noisy paths trimmed (for example `src/components/ui`).
 
+The main `tsconfig.json` **excludes** the `tests/` tree so `next build` (including on Vercel, where devDependencies such as Vitest are not installed) does not typecheck spec files that import `vitest`.
+
 ## Scripts
 
 | Command        | Description        |
