@@ -1,3 +1,8 @@
+/*
+AI Generated Features
+Prompt: 
+"Generate a local data storing feature that allows user to download their logging data without server logging."
+*/
 'use client';
 
 import { Button } from '@/components/ui/button';
