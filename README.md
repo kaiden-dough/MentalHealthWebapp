@@ -55,6 +55,8 @@ The main `tsconfig.json` **excludes** the `tests/` tree so `next build` (includi
 
 ## Deploy (e.g. Vercel)
 
+For branch-based preview testing, push your feature branch (for example `kaidendo`) and deploy that branch in Vercel before merging to `main`.
+
 1. **Vercel → Project → Settings → Environment Variables** (Production at minimum):
    - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` (same as local).
    - `NEXT_PUBLIC_SITE_URL` = your live origin, e.g. `https://mental-health-webapp-sigma.vercel.app` (no trailing slash).  
