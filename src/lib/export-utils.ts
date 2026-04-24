@@ -1,4 +1,7 @@
 /**
+ * AI Generated Features
+ * Prompt: 
+ * "Generate a local data storing feature that allows user to download their logging data without server logging."
  * Utility functions for exporting mood history data.
  * Provides CSV export functionality for user mood entries.
  */
